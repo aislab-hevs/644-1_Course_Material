@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Intro - Room</string>
+    <string name="action_settings">Settings</string>
+    <string name="prompt_email">Email</string>
+    <string name="client_firstName">Firstname</string>
+    <string name="client_lastName">Lastname</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_error">Something went wrong</string>
+    <string name="client_edited">Client edited</string>
+    <string name="error_used_email">Email already in use</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="delete_msg">Do you really want to delete this client?</string>
+    <string name="action_accept">Execute</string>
+    <string name="title_activity_delete_account">Delete Client</string>
+    <string name="account_deleted">Client deleted</string>
+    <string name="title_activity_main">Clients</string>
+    <string name="title_activity_details">Client Details</string>
+    <string name="title_activity_create">Create Client</string>
+    <string name="action_create">Create Client</string>
+</resources>
