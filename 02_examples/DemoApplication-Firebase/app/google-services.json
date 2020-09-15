@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1039441837672",
+    "firebase_url": "https://fir-ec40f.firebaseio.com",
+    "project_id": "fir-ec40f",
+    "storage_bucket": "fir-ec40f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039441837672:android:2e0b4b0196a1c7e3",
+        "android_client_info": {
+          "package_name": "ch.hevs.aislab.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039441837672-2ip6djv5ikofpbmgrlubrvnqp7b0k6sh.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1039441837672-2ip6djv5ikofpbmgrlubrvnqp7b0k6sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQYVmIFwZsLHrKFlANxrCserYUX_cMzFA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

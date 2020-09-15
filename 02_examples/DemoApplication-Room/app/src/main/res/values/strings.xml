@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Demo - Room</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_client">Client</string>
+    <string name="title_activity_accounts">Accounts</string>
+    <string name="disclaimer" translatable="false">Copyright &#169; 2017\nHES-SO Valais//Wallis Sierre</string>
+    <string name="impressum" translatable="false">644-1 Mobile &amp; Cloud Computing</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">Invalid login credentials</string>
+    <string name="error_used_email">Email already in use</string>
+    <string name="error_invalid_password">This password is too short (&lt;5 characters)</string>
+    <string name="error_edit_invalid_password">You need to specify a password</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_about">About</string>
+
+    <string-array name="pref_language_list_titles">
+        <item>English</item>
+        <item>German</item>
+    </string-array>
+
+    <string-array name="pref_language_list_values" translatable="false">
+        <item>en</item>
+        <item>de</item>
+    </string-array>
+
+    <string name="client_name">Last Name</string>
+    <string name="client_firstName">First Name</string>
+    <string name="action_create">Create</string>
+    <string name="action_update">Save Changes</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="toggle_admin" translatable="false">Admin</string>
+    <string name="client_repeat_password">Repeat Password</string>
+    <string name="title_activity_create_account">Create Account</string>
+    <string name="account_balance">Account Balance</string>
+    <string name="action_deposit">Deposit</string>
+    <string name="action_withdraw">Withdraw</string>
+    <string name="action_transaction">Execute</string>
+    <string name="action_accept">Execute</string>
+    <string name="transaction_from">From</string>
+    <string name="transaction_to">To</string>
+    <string name="transaction_acc">Account</string>
+    <string name="action_initialize_gae">Initialize Google Datastore</string>
+    <string name="title_activity_transaction">Transaction</string>
+    <string name="transaction_amount">Amount</string>
+    <string name="error_transaction">The transfer amount exceeds the account balance</string>
+    <string name="error_transaction_negativ">The transaction amount must be positive</string>
+    <string name="balance" translatable="false">%1$s$</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="error_withdraw">Withdrawal cannot exceed account balance</string>
+    <string name="title_activity_edit_client">Edit Client</string>
+    <string name="client_created">Client created</string>
+    <string name="client_edited">Client edited</string>
+    <string name="prompt_account_name">Account Name</string>
+    <string name="title_activity_edit_account">Edit Account</string>
+    <string name="account_created">Account created</string>
+    <string name="account_edited">Account edited</string>
+    <string name="client_deleted">Client deleted</string>
+    <string name="account_deleted">Account deleted</string>
+    <string name="title_activity_delete_account">Delete Account</string>
+    <string name="title_activity_delete_client">Delete Client</string>
+    <string name="account_delete_msg">Do you want to delete the account %1$s?</string>
+    <string name="client_delete_msg">Do you really want to delete the client %1$s? All accounts of this client will be deleted as well.</string>
+    <string name="pref_header_language">Language</string>
+    <string name="pref_about_text">This application was developed to provide a possibility to demonstrate how the newly released Android Architecture Components could be implemented in an application.</string>
+    <string name="pref_title_language">Change your display language</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_reset">Reset</string>
+    <string name="logout_msg">Do you really want to logout?</string>
+    <string name="delete_msg">Do you really want to delete your client account?</string>
+    <string name="reset_msg">Do you really want to reset the database?</string>
+    <string name="transaction_executed">Transaction executed</string>
+    <string name="transaction_no_selection">Please select a recipient</string>
+    <string name="transaction_no_amount">Please specify an amount</string>
+    <string name="action_register">Register</string>
+    <string name="action_demo_data">Reset Demo Data</string>
+    <string name="demo_data_initiated">Demo data initiated</string>
+</resources>

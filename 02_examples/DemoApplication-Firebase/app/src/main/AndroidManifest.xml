@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.hevs.aislab.demo">
+
+    <application
+        android:name=".BaseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.mgmt.LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.mgmt.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.mgmt.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".ui.mgmt.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".ui.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.mgmt.RegisterActivity"
+            android:label="@string/action_register"
+            android:parentActivityName=".ui.mgmt.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.mgmt.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".ui.client.ClientActivity"
+            android:label="@string/title_activity_client"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.transaction.TransactionActivity"
+            android:label="@string/title_activity_transaction"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.account.AccountsActivity"
+            android:label="@string/title_activity_accounts"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.account.EditAccountActivity"
+            android:label="@string/title_activity_edit_account"
+            android:parentActivityName=".ui.account.AccountsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.account.AccountsActivity" />
+        </activity>
+        <activity
+            android:name=".ui.BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.account.AccountDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.account.AccountsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.hevs.aislab.demo.ui.account.AccountsActivity" />
+        </activity>
+    </application>
+
+</manifest>

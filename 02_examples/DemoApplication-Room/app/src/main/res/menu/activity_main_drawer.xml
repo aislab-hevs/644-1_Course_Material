@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_accounts"
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+            android:title="@string/title_activity_accounts" />
+        <item
+            android:id="@+id/nav_transaction"
+            android:icon="@drawable/ic_credit_card_black_24dp"
+            android:title="@string/title_activity_transaction" />
+        <item
+            android:id="@+id/nav_client"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/title_activity_client"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/action_logout"/>
+        <item
+            android:id="@+id/nav_none"
+            android:title=""
+            android:visible="false"/>
+    </group>
+
+</menu>
