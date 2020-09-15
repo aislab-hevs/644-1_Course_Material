@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Settings</string>
+    <string name="main_welcome">Willkommen</string>
+    <string name="pref_select_language">Wählen Sie Ihre Sprache</string>
+</resources>

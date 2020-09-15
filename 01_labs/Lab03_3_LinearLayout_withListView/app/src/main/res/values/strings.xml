@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LinearLayout</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">Cantons</string>
+
+    <string-array name="cantons_array">
+        <item>Aargau</item>
+        <item>Appenzell Ausserrhoden</item>
+        <item>Appenzell Innerrhoden</item>
+        <item>Basel-Landschaft</item>
+        <item>Basel-Stadt</item>
+        <item>Bern</item>
+        <item>Freiburg</item>
+        <item>Genf</item>
+        <item>Glarus</item>
+        <item>Graubünden</item>
+        <item>Jura</item>
+        <item>Luzern</item>
+        <item>Neuenburg</item>
+        <item>Nidwalden</item>
+        <item>Obwalden</item>
+        <item>Schaffhausen</item>
+        <item>Schwyz</item>
+        <item>Solothurn</item>
+        <item>St. Gallen</item>
+        <item>Tessin</item>
+        <item>Thurgau</item>
+        <item>Uri</item>
+        <item>Waadt</item>
+        <item>Wallis</item>
+        <item>Zug</item>
+        <item>Zürich</item>
+    </string-array>
+
+</resources>

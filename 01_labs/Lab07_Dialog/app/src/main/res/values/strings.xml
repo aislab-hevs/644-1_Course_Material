@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dialog</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="pick_color">Change Color</string>
+
+    <string-array name="string_array_colors">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Black</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>White</item>
+    </string-array>
+
+</resources>

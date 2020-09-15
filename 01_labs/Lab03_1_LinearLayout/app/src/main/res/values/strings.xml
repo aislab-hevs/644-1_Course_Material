@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LinearLayout</string>
+    <string name="action_settings">Settings</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_main">ShowActivity</string>
+    <string name="nan">NaN</string>
+
+</resources>

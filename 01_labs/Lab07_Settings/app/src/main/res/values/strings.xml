@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="pref_select_language">Select your language</string>
+    <string name="pref_summary">Define your preferred language</string>
+	<string name="main_welcome">Willkommen</string>
+</resources>

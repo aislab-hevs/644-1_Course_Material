@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Storage</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_btn_save">Save</string>
+    <string name="main_btn_read">Read</string>
+    <string name="main_txt_cantons">Cantons Shared Preferences</string>
+    <string name="main_txt_planets">Planets File</string>
+    <string name="main_txt_fruits">Fruits SQLite</string>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string-array name="fruits_array">
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>Kiwi</item>
+        <item>Mandarine</item>
+        <item>Orange</item>
+        <item>Pear</item>
+        <item>Pineapple</item>
+        <item>Watermelon</item>
+    </string-array>
+    <string-array name="cantons_array">
+        <item>Aargau</item>
+        <item>Appenzell Ausserrhoden</item>
+        <item>Appenzell Innerrhoden</item>
+        <item>Basel-Landschaft</item>
+        <item>Basel-Stadt</item>
+        <item>Bern</item>
+        <item>Freiburg</item>
+        <item>Genf</item>
+        <item>Glarus</item>
+        <item>Graubünden</item>
+        <item>Jura</item>
+        <item>Luzern</item>
+        <item>Neuenburg</item>
+        <item>Nidwalden</item>
+        <item>Obwalden</item>
+        <item>Schaffhausen</item>
+        <item>Schwyz</item>
+        <item>Solothurn</item>
+        <item>St. Gallen</item>
+        <item>Tessin</item>
+        <item>Thurgau</item>
+        <item>Uri</item>
+        <item>Waadt</item>
+        <item>Wallis</item>
+        <item>Zug</item>
+        <item>Zürich</item>
+    </string-array>
+
+    <string name="title_activity_show_data">ShowData</string>
+
+</resources>
