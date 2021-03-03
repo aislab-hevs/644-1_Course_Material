@@ -1,0 +1,4 @@
+#Sun Feb 28 21:01:38 CET 2021
+base.0=/Users/scz/Documents/workspaceAndroidStudio/Lab04_Android_Toolbar_Apartments/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
