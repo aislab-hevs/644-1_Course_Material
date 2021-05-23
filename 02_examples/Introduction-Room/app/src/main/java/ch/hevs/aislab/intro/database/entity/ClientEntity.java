@@ -1,10 +1,11 @@
 package ch.hevs.aislab.intro.database.entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.time.LocalDateTime;
 
 @Entity(tableName = "clients")
 public class ClientEntity {
@@ -21,14 +22,26 @@ public class ClientEntity {
     @ColumnInfo(name = "last_name")
     private String lastName;
 
-    @Ignore
+    @ColumnInfo(name = "created_at")
+    private LocalDateTime createdAt;
+
+
     public ClientEntity() {
     }
 
-    public ClientEntity(@NonNull String email, String firstName, String lastName) {
+    @Ignore
+    public ClientEntity(String email, String firstName, String lastName) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    @Ignore
+    public ClientEntity(String email, String firstName, String lastName, LocalDateTime createdAt) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -43,7 +56,7 @@ public class ClientEntity {
         return email;
     }
 
-    public void setEmail(@NonNull String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -61,6 +74,14 @@ public class ClientEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="client"
+            type="ch.hevs.aislab.intro.database.entity.ClientEntity"/>
+    </data>
+
+    <TextView
+        android:id="@+id/tvRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{client.toString()}"
+        android:textSize="25sp" />
+</layout>

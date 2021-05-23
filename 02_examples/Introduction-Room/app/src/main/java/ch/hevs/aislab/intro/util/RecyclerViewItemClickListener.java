@@ -1,8 +1,8 @@
 package ch.hevs.aislab.intro.util;
 
-import android.view.View;
+import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
 public interface RecyclerViewItemClickListener {
-    void onItemClick(View v, int position);
-    void onItemLongClick(View v, int position);
+    void onClick(ClientEntity client);
+    void onLongClick(ClientEntity client);
 }

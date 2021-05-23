@@ -3,6 +3,11 @@ package ch.hevs.aislab.intro.database;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.concurrent.ThreadLocalRandom;
+
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
 public class DatabaseInitializer {
@@ -17,7 +22,13 @@ public class DatabaseInitializer {
 
     private static void addClient(final AppDatabase db, final String email, final String firstName,
                                 final String lastName) {
-        ClientEntity client = new ClientEntity(email, firstName, lastName);
+        ClientEntity client = new ClientEntity(
+                email, firstName, lastName,
+                LocalDateTime.ofInstant(
+                        Instant.ofEpochMilli(
+                                ThreadLocalRandom.current().nextInt() * 1000L
+                        ), OffsetDateTime.now().getOffset())
+        );
         db.clientDao().insert(client);
     }
 
