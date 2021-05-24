@@ -18,7 +18,7 @@ public class DatabaseInitializer {
 
     public static void populateDatabase(final AppDatabase db) {
         Log.i(TAG, "Inserting demo data.");
-        new PopulateDbTask(db).call();
+        populateWithTestData(db);
     }
 
     private static void addClient(final AppDatabase db, final String email, final String firstName,
@@ -40,20 +40,5 @@ public class DatabaseInitializer {
         addClient(db, "sepp.blatter@fifa.com", "Sepp", "Blatter");
         addClient(db, "ebbe.schwartz@fifa.com", "Ebbe", "Schwartz");
         addClient(db, "aleksander.ceferin@fifa.com", "Aleksander", "Ceferin");
-    }
-
-    private static class PopulateDbTask implements Callable<Void> {
-
-        private final AppDatabase database;
-
-        PopulateDbTask(AppDatabase db) {
-            database = db;
-        }
-
-        @Override
-        public Void call() {
-            populateWithTestData(database);
-            return null;
-        }
     }
 }
