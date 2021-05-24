@@ -9,6 +9,7 @@
     <string name="client_delete_msg">Do you want to delete the client "%1$s"?</string>
     <string name="action_error">Something went wrong</string>
     <string name="client_edited">Client edited</string>
+    <string name="client_created">Client created</string>
     <string name="error_used_email">Email already in use</string>
     <string name="error_invalid_email">Invalid email address</string>
     <string name="error_empty_field">Empty field</string>
@@ -16,7 +17,7 @@
     <string name="delete_msg">Do you really want to delete this client?</string>
     <string name="action_accept">Execute</string>
     <string name="title_activity_delete_account">Delete Client</string>
-    <string name="account_deleted">Client deleted</string>
+    <string name="client_deleted">Client deleted</string>
     <string name="title_activity_main">Clients</string>
     <string name="title_activity_details">Client Details</string>
     <string name="title_activity_create">Create Client</string>

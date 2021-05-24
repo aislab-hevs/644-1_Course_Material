@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -95,6 +96,7 @@ public class ClientDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         clientId = requireArguments().getLong(KEY_CLIENT_ID);
         creationMode = clientId == 0L;
+        binding.setIsEditing(creationMode);
 
         ClientViewModel.Factory factory = new ClientViewModel.Factory(
                 requireActivity().getApplication(), clientId);
@@ -120,11 +122,21 @@ public class ClientDetailsFragment extends Fragment {
         OnAsyncEventListener asyncEventListener = new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-
+                int stringId;
+                if (creationMode) {
+                    stringId = R.string.client_created;
+                } else {
+                    stringId = R.string.client_edited;
+                }
+                statusToast = Toast.makeText(getContext(), getString(stringId), Toast.LENGTH_LONG);
+                statusToast.show();
+                Navigation.findNavController(binding.getRoot()).navigateUp();
             }
 
             @Override
             public void onFailure(Exception e) {
+                statusToast = Toast.makeText(getContext(), getString(R.string.action_error), Toast.LENGTH_LONG);
+                statusToast.show();
                 Log.e(TAG, "Error during persisting changes!", e);
             }
         };

@@ -81,10 +81,9 @@ public class ClientListFragment extends Fragment {
             }
         });
 
-        binding.createClientFab.setOnClickListener((v -> {
-                    Navigation.findNavController(binding.getRoot())
-                            .navigate(R.id.action_client_list_to_client_details);
-                })
+        binding.createClientFab.setOnClickListener((v -> Navigation
+                .findNavController(binding.getRoot())
+                .navigate(R.id.action_client_list_to_client_details))
         );
     }
 
@@ -106,10 +105,15 @@ public class ClientListFragment extends Fragment {
         deleteMessage.setText(String.format(getString(R.string.client_delete_msg), client.toString()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(binding.getRoot().getContext(), getString(R.string.account_deleted), Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(
+                    binding.getRoot().getContext(),
+                    getString(R.string.client_deleted),
+                    Toast.LENGTH_LONG
+            );
             viewModel.deleteClient(client, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
+                    toast.show();
                     Log.d(TAG, "deleteAccount: success");
                 }
 
@@ -118,7 +122,6 @@ public class ClientListFragment extends Fragment {
                     Log.d(TAG, "deleteAccount: failure", e);
                 }
             });
-            toast.show();
         });
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
