@@ -1,15 +1,17 @@
 <resources>
-    <string name="app_name">Intro - Firebase</string>
+    <string name="app_name">Intro - Room</string>
     <string name="action_settings">Settings</string>
     <string name="prompt_email">Email</string>
     <string name="client_firstName">Firstname</string>
     <string name="client_lastName">Lastname</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="client_delete_msg">Do you want to delete the client "%1$s"?</string>
     <string name="action_error">Something went wrong</string>
     <string name="client_edited">Client edited</string>
     <string name="error_used_email">Email already in use</string>
     <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_empty_field">Empty field</string>
     <string name="action_cancel">Cancel</string>
     <string name="delete_msg">Do you really want to delete this client?</string>
     <string name="action_accept">Execute</string>
