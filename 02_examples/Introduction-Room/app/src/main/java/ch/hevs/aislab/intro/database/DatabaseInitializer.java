@@ -1,16 +1,13 @@
 package ch.hevs.aislab.intro.database;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
-import ch.hevs.aislab.intro.util.TaskRunner;
 
 public class DatabaseInitializer {
 
