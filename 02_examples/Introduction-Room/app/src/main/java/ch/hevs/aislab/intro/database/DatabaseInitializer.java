@@ -6,9 +6,11 @@ import android.util.Log;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
 
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
+import ch.hevs.aislab.intro.util.TaskRunner;
 
 public class DatabaseInitializer {
 
@@ -16,8 +18,7 @@ public class DatabaseInitializer {
 
     public static void populateDatabase(final AppDatabase db) {
         Log.i(TAG, "Inserting demo data.");
-        PopulateDbAsync task = new PopulateDbAsync(db);
-        task.execute();
+        new PopulateDbTask(db).call();
     }
 
     private static void addClient(final AppDatabase db, final String email, final String firstName,
@@ -41,19 +42,18 @@ public class DatabaseInitializer {
         addClient(db, "aleksander.ceferin@fifa.com", "Aleksander", "Ceferin");
     }
 
-    private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
+    private static class PopulateDbTask implements Callable<Void> {
 
         private final AppDatabase database;
 
-        PopulateDbAsync(AppDatabase db) {
+        PopulateDbTask(AppDatabase db) {
             database = db;
         }
 
         @Override
-        protected Void doInBackground(final Void... params) {
+        public Void call() {
             populateWithTestData(database);
             return null;
         }
-
     }
 }
