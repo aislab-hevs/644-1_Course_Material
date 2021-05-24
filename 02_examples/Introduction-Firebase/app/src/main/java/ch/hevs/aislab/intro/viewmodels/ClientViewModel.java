@@ -8,9 +8,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
@@ -24,7 +27,7 @@ public class ClientViewModel extends AndroidViewModel {
     private final DateTimeFormatter dateFormatter;
 
     public ClientViewModel(@NonNull Application application, ClientRepository repository,
-                            final long clientId) {
+                            final String clientId) {
         super(application);
         clientRepository = repository;
         observableClient = repository.getClient(clientId);
@@ -40,13 +43,21 @@ public class ClientViewModel extends AndroidViewModel {
         return observableClient;
     }
 
-    public LocalDateTime getInstant(String dateString) {
-        return LocalDateTime.parse(dateString, dateFormatter);
+    public long getTimestamp(String dateString) {
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(
+                LocalDateTime.parse(dateString, dateFormatter),
+                TimeZone.getDefault().toZoneId()
+        );
+        return zonedDateTime.toInstant().toEpochMilli();
     }
 
-    public String displayDateTime(LocalDateTime dateTime) {
-        if (dateTime != null) {
-            return dateFormatter.format(dateTime);
+    public String displayTimestamp(Long timestamp) {
+        if (timestamp != 0) {
+            ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(
+                    Instant.ofEpochMilli(timestamp),
+                    TimeZone.getDefault().toZoneId()
+            );
+            return zonedDateTime.format(dateFormatter);
         } else {
             return "";
         }
@@ -71,11 +82,11 @@ public class ClientViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final long clientId;
+        private final String clientId;
 
         private final ClientRepository clientRepository;
 
-        public Factory(@NonNull Application application, long clientId) {
+        public Factory(@NonNull Application application, String clientId) {
             this.application = application;
             this.clientId = clientId;
             clientRepository = ((BasicApp) application).getClientRepository();

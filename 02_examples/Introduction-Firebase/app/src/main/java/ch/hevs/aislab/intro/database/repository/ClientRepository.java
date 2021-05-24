@@ -1,54 +1,87 @@
 package ch.hevs.aislab.intro.database.repository;
 
+import android.text.TextUtils;
+
 import java.util.List;
+import java.util.Objects;
 
 import androidx.lifecycle.LiveData;
 
-import ch.hevs.aislab.intro.database.AppDatabase;
-import ch.hevs.aislab.intro.database.async.CreateClientTask;
-import ch.hevs.aislab.intro.database.async.DeleteClientTask;
-import ch.hevs.aislab.intro.database.async.UpdateClientTask;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
+
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
+import ch.hevs.aislab.intro.database.firebase.ClientListLiveData;
+import ch.hevs.aislab.intro.database.firebase.ClientLiveData;
 import ch.hevs.aislab.intro.util.OnAsyncEventListener;
-import ch.hevs.aislab.intro.util.TaskRunner;
 
 public class ClientRepository {
 
     private static ClientRepository instance;
-    private final AppDatabase database;
 
-    private ClientRepository(final AppDatabase database) {
-        this.database = database;
-    }
-
-    public static ClientRepository getInstance(final AppDatabase database) {
+    public static ClientRepository getInstance() {
         if (instance == null) {
             synchronized (ClientRepository.class) {
                 if (instance == null) {
-                    instance = new ClientRepository(database);
+                    instance = new ClientRepository();
                 }
             }
         }
         return instance;
     }
 
-    public LiveData<ClientEntity> getClient(final long id) {
-        return database.clientDao().getById(id);
+    public LiveData<ClientEntity> getClient(final String id) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clients")
+                .child(id);
+        return new ClientLiveData(reference);
     }
 
     public LiveData<List<ClientEntity>> getAllClients() {
-        return database.clientDao().getAll();
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clients");
+        return new ClientListLiveData(reference);
     }
 
     public void insert(final ClientEntity client, OnAsyncEventListener callback) {
-        TaskRunner.getInstance().executeAsync(new CreateClientTask(database, client), callback);
+        String id = FirebaseDatabase.getInstance().getReference("clients").push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference("clients")
+                .child(Objects.requireNonNull(id))
+                .setValue(client, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void update(final ClientEntity client, OnAsyncEventListener callback) {
-        TaskRunner.getInstance().executeAsync(new UpdateClientTask(database, client), callback);
+        FirebaseDatabase.getInstance()
+                .getReference("clients")
+                .child(client.getId())
+                .updateChildren(client.toMap(), (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void delete(final ClientEntity client, OnAsyncEventListener callback) {
-        TaskRunner.getInstance().executeAsync(new DeleteClientTask(database, client), callback);
+        FirebaseDatabase.getInstance()
+                .getReference("clients")
+                .child(client.getId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 }

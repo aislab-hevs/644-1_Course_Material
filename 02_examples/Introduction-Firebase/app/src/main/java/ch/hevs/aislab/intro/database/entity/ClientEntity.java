@@ -1,56 +1,36 @@
 package ch.hevs.aislab.intro.database.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import com.google.firebase.database.Exclude;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
-@Entity(tableName = "clients")
 public class ClientEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
-
-    @ColumnInfo(name = "email")
+    private String id;
     private String email;
-
-    @ColumnInfo(name = "first_name")
     private String firstName;
-
-    @ColumnInfo(name = "last_name")
     private String lastName;
-
-    @ColumnInfo(name = "created_at")
-    private LocalDateTime createdAt;
+    private long createdAt;
 
 
     public ClientEntity() {
     }
 
-    @Ignore
     public ClientEntity(String email, String firstName, String lastName) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    @Ignore
-    public ClientEntity(String email, String firstName, String lastName, LocalDateTime createdAt) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.createdAt = createdAt;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,11 +58,11 @@ public class ClientEntity {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -99,5 +79,15 @@ public class ClientEntity {
     @Override
     public String toString() {
         return firstName + " " + lastName;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("email", email);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+        result.put("createdAt", createdAt);
+        return result;
     }
 }

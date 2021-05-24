@@ -59,7 +59,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                             && TextUtils.equals(newClient.getEmail(), oldClient.getEmail())
                             && TextUtils.equals(newClient.getFirstName(), oldClient.getFirstName())
                             && TextUtils.equals(newClient.getLastName(), oldClient.getLastName())
-                            && newClient.getCreatedAt().equals(oldClient.getCreatedAt());
+                            && newClient.getCreatedAt() == oldClient.getCreatedAt();
                 }
             });
             this.clientList = clientList;

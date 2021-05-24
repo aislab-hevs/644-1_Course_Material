@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,9 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.R;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 import ch.hevs.aislab.intro.databinding.ClientDetailsFragmentBinding;
@@ -31,13 +34,12 @@ import ch.hevs.aislab.intro.viewmodels.ClientViewModel;
 public class ClientDetailsFragment extends Fragment {
 
     private static final String TAG = "ClientDetailsFragment";
-    private static final String KEY_CLIENT_ID = "client_id";
 
     private boolean isEditing;
     private boolean creationMode;
 
     private Toast statusToast;
-    private long clientId;
+    private String clientId;
 
     private ClientDetailsFragmentBinding binding;
 
@@ -93,8 +95,9 @@ public class ClientDetailsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        clientId = requireArguments().getLong(KEY_CLIENT_ID);
-        creationMode = clientId == 0L;
+        clientId = requireArguments().getString(BasicApp.KEY_CLIENT_ID);
+        creationMode = TextUtils.isEmpty(clientId);
+        binding.setIsEditing(creationMode);
 
         ClientViewModel.Factory factory = new ClientViewModel.Factory(
                 requireActivity().getApplication(), clientId);
@@ -120,11 +123,21 @@ public class ClientDetailsFragment extends Fragment {
         OnAsyncEventListener asyncEventListener = new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-
+                int stringId;
+                if (creationMode) {
+                    stringId = R.string.client_created;
+                } else {
+                    stringId = R.string.client_edited;
+                }
+                statusToast = Toast.makeText(getContext(), getString(stringId), Toast.LENGTH_LONG);
+                statusToast.show();
+                Navigation.findNavController(binding.getRoot()).navigateUp();
             }
 
             @Override
             public void onFailure(Exception e) {
+                statusToast = Toast.makeText(getContext(), getString(R.string.action_error), Toast.LENGTH_LONG);
+                statusToast.show();
                 Log.e(TAG, "Error during persisting changes!", e);
             }
         };
@@ -132,13 +145,13 @@ public class ClientDetailsFragment extends Fragment {
         if (validateInput(firstName,lastName,email)) {
             ClientEntity clientEntity = new ClientEntity(email, firstName, lastName);
             if (creationMode) {
-                clientEntity.setCreatedAt(LocalDateTime.now());
+                clientEntity.setCreatedAt(Instant.now().toEpochMilli());
                 binding.getClientViewModel().createClient(clientEntity, asyncEventListener);
             } else {
                 clientEntity.setId(clientId);
                 clientEntity.setCreatedAt(
                         binding.getClientViewModel()
-                                .getInstant(binding.createdAt.getText().toString())
+                                .getTimestamp(binding.createdAt.getText().toString())
                 );
                 binding.getClientViewModel().updateClient(clientEntity, asyncEventListener);
             }

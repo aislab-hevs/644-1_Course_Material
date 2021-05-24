@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.R;
 import ch.hevs.aislab.intro.adapter.ClientAdapter;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
@@ -48,7 +49,7 @@ public class ClientListFragment extends Fragment {
             public void onClick(ClientEntity client) {
                 Log.d(TAG, "clicked:" + client.toString());
                 Bundle bundle = new Bundle();
-                bundle.putLong("client_id", client.getId());
+                bundle.putString(BasicApp.KEY_CLIENT_ID, client.getId());
                 Navigation.findNavController(binding.getRoot())
                         .navigate(R.id.action_client_list_to_client_details, bundle);
             }
@@ -105,10 +106,15 @@ public class ClientListFragment extends Fragment {
         deleteMessage.setText(String.format(getString(R.string.client_delete_msg), client.toString()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
-            Toast toast = Toast.makeText(binding.getRoot().getContext(), getString(R.string.account_deleted), Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(
+                    binding.getRoot().getContext(),
+                    getString(R.string.client_deleted),
+                    Toast.LENGTH_LONG
+            );
             viewModel.deleteClient(client, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
+                    toast.show();
                     Log.d(TAG, "deleteAccount: success");
                 }
 
@@ -117,7 +123,6 @@ public class ClientListFragment extends Fragment {
                     Log.d(TAG, "deleteAccount: failure", e);
                 }
             });
-            toast.show();
         });
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());

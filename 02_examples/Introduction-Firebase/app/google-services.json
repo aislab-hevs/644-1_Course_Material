@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1062371179253",
+    "firebase_url": "https://demodata-3db0d.firebaseio.com",
+    "project_id": "demodata-3db0d",
+    "storage_bucket": "demodata-3db0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062371179253:android:2d929f2c79c0e6d493e3bc",
+        "android_client_info": {
+          "package_name": "ch.hevs.aislab.intro.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062371179253-anr9ruqmddghudins94uhp39jfk9cv5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7d0yavsQnoyVqtHc5tvyQTiPoaY4imy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062371179253-anr9ruqmddghudins94uhp39jfk9cv5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,7 +23,7 @@
         android:label="@string/title_activity_details">
         <argument
             android:name="client_id"
-            android:defaultValue="0L"
-            app:argType="long" />
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 </navigation>
