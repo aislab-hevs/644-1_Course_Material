@@ -1,7 +1,5 @@
 package ch.hevs.aislab.intro.database.repository;
 
-import android.text.TextUtils;
-
 import java.util.List;
 import java.util.Objects;
 
