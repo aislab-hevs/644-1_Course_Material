@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 
 @Entity(tableName = "clients")
@@ -93,6 +95,7 @@ public class ClientEntity {
         return o.getEmail().equals(this.getEmail());
     }
 
+    @NotNull
     @Override
     public String toString() {
         return firstName + " " + lastName;
