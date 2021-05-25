@@ -37,7 +37,7 @@ public class ClientRepository {
     }
 
     public LiveData<List<ClientEntity>> getAllClients() {
-        return database.clientDao().getAll();
+        return database.clientDao().getAllPartial();
     }
 
     public void insert(final ClientEntity client, OnAsyncEventListener callback) {

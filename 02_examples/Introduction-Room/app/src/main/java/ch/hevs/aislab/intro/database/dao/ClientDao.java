@@ -18,8 +18,8 @@ public interface ClientDao {
     @Query("SELECT * FROM clients WHERE id = :id")
     LiveData<ClientEntity> getById(long id);
 
-    @Query("SELECT * FROM clients")
-    LiveData<List<ClientEntity>> getAll();
+    @Query("SELECT id, first_name, last_name FROM clients")
+    LiveData<List<ClientEntity>> getAllPartial();
 
     @Insert
     void insert(ClientEntity client) throws SQLiteConstraintException;
