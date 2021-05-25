@@ -51,7 +51,7 @@ public class ClientViewModel extends AndroidViewModel {
         return zonedDateTime.toInstant().toEpochMilli();
     }
 
-    public String displayTimestamp(Long timestamp) {
+    public String displayTimestamp(long timestamp) {
         if (timestamp != 0) {
             ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(
                     Instant.ofEpochMilli(timestamp),
