@@ -10,8 +10,6 @@ import androidx.lifecycle.LiveData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 import ch.hevs.aislab.intro.database.firebase.ClientListLiveData;
 import ch.hevs.aislab.intro.database.firebase.ClientLiveData;
@@ -50,38 +48,27 @@ public class ClientRepository {
         FirebaseDatabase.getInstance()
                 .getReference("clients")
                 .child(Objects.requireNonNull(id))
-                .setValue(client, (databaseError, databaseReference) -> {
-                    if (databaseError != null) {
-                        callback.onFailure(databaseError.toException());
-                    } else {
-                        callback.onSuccess();
-                    }
-                });
+                .setValue(client)
+                .addOnCompleteListener(task -> callback.onSuccess())
+                .addOnFailureListener(callback::onFailure);
     }
 
     public void update(final ClientEntity client, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("clients")
                 .child(client.getId())
-                .updateChildren(client.toMap(), (databaseError, databaseReference) -> {
-                    if (databaseError != null) {
-                        callback.onFailure(databaseError.toException());
-                    } else {
-                        callback.onSuccess();
-                    }
-                });
+                .updateChildren(client.toMap())
+                .addOnCompleteListener(task -> callback.onSuccess())
+                .addOnFailureListener(callback::onFailure);
+
     }
 
     public void delete(final ClientEntity client, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("clients")
                 .child(client.getId())
-                .removeValue((databaseError, databaseReference) -> {
-                    if (databaseError != null) {
-                        callback.onFailure(databaseError.toException());
-                    } else {
-                        callback.onSuccess();
-                    }
-                });
+                .removeValue()
+                .addOnCompleteListener(task -> callback.onSuccess())
+                .addOnFailureListener(callback::onFailure);
     }
 }
