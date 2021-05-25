@@ -35,7 +35,10 @@ public class ClientListLiveData extends LiveData<List<ClientEntity>> {
 
     @Override
     protected void onInactive() {
-        Log.d(TAG, "onInactive");
+        if (!hasActiveObservers()) {
+            Log.d(TAG, "onInactive: Remove Event Listener");
+            reference.removeEventListener(listener);
+        }
     }
 
     private class MyValueEventListener implements ValueEventListener {
