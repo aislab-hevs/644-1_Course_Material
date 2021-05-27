@@ -31,7 +31,7 @@ public class ClientViewModel extends AndroidViewModel {
         super(application);
         clientRepository = repository;
         observableClient = repository.getClient(clientId);
-        dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a")
+        dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ssZZZZZ")
                 .withLocale(Locale.getDefault());
     }
 
