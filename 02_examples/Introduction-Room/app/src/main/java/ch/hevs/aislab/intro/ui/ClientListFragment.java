@@ -96,7 +96,7 @@ public class ClientListFragment extends Fragment {
 
     private void createDeleteDialog(final ClientEntity client) {
         LayoutInflater inflater = LayoutInflater.from(binding.getRoot().getContext());
-        final View view = inflater.inflate(R.layout.dialog_delete_item, null);
+        final View view = inflater.inflate(R.layout.dialog_delete_client, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(binding.getRoot().getContext()).create();
         alertDialog.setTitle(getString(R.string.title_activity_delete_account));
         alertDialog.setCancelable(false);
