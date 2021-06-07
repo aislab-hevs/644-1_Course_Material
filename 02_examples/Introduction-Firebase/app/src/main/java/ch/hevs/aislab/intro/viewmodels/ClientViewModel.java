@@ -10,10 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
@@ -32,13 +31,12 @@ public class ClientViewModel extends AndroidViewModel {
         clientRepository = repository;
         observableClient = repository.getClient(clientId);
         dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ssZZZZZ")
-                .withLocale(Locale.getDefault());
+                .withZone(ZoneId.systemDefault());
     }
 
     /**
      * Expose the LiveData Comments query so the UI can observe it.
      */
-
     public LiveData<ClientEntity> getClient() {
         return observableClient;
     }
@@ -46,7 +44,7 @@ public class ClientViewModel extends AndroidViewModel {
     public long getTimestamp(String dateString) {
         ZonedDateTime zonedDateTime = ZonedDateTime.of(
                 LocalDateTime.parse(dateString, dateFormatter),
-                TimeZone.getDefault().toZoneId()
+                ZoneId.systemDefault()
         );
         return zonedDateTime.toInstant().toEpochMilli();
     }
@@ -55,7 +53,7 @@ public class ClientViewModel extends AndroidViewModel {
         if (timestamp != 0) {
             ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(
                     Instant.ofEpochMilli(timestamp),
-                    TimeZone.getDefault().toZoneId()
+                    ZoneId.systemDefault()
             );
             return zonedDateTime.format(dateFormatter);
         } else {
