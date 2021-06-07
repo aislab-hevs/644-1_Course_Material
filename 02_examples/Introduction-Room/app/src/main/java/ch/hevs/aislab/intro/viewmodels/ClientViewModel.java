@@ -8,9 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
@@ -29,22 +29,21 @@ public class ClientViewModel extends AndroidViewModel {
         clientRepository = repository;
         observableClient = repository.getClient(clientId);
         dateFormatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ssZZZZZ")
-                .withLocale(Locale.getDefault());
+                .withZone(ZoneId.systemDefault());
     }
 
     /**
      * Expose the LiveData Comments query so the UI can observe it.
      */
-
     public LiveData<ClientEntity> getClient() {
         return observableClient;
     }
 
-    public LocalDateTime getInstant(String dateString) {
-        return LocalDateTime.parse(dateString, dateFormatter);
+    public ZonedDateTime getInstant(String dateString) {
+        return ZonedDateTime.parse(dateString, dateFormatter);
     }
 
-    public String displayDateTime(LocalDateTime dateTime) {
+    public String displayDateTime(ZonedDateTime dateTime) {
         if (dateTime != null) {
             return dateFormatter.format(dateTime);
         } else {

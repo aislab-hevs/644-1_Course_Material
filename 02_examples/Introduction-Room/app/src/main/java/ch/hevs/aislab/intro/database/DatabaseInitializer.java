@@ -2,10 +2,8 @@ package ch.hevs.aislab.intro.database;
 
 import android.util.Log;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.concurrent.ThreadLocalRandom;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
@@ -22,10 +20,10 @@ public class DatabaseInitializer {
                                 final String lastName) {
         ClientEntity client = new ClientEntity(
                 email, firstName, lastName,
-                LocalDateTime.ofInstant(
-                        Instant.ofEpochMilli(
-                                ThreadLocalRandom.current().nextInt() * 1000L
-                        ), OffsetDateTime.now().getOffset())
+                ZonedDateTime.of(
+                        2021, 1, 1, 0, 0, 0, 0,
+                        ZoneId.of("ECT")
+                )
         );
         db.clientDao().insert(client);
     }

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import ch.hevs.aislab.intro.R;
@@ -144,7 +145,7 @@ public class ClientDetailsFragment extends Fragment {
         if (validateInput(firstName,lastName,email)) {
             ClientEntity clientEntity = new ClientEntity(email, firstName, lastName);
             if (creationMode) {
-                clientEntity.setCreatedAt(LocalDateTime.now());
+                clientEntity.setCreatedAt(ZonedDateTime.now());
                 binding.getClientViewModel().createClient(clientEntity, asyncEventListener);
             } else {
                 clientEntity.setId(clientId);

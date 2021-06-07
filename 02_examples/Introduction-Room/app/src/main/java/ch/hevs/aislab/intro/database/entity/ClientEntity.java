@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity(tableName = "clients")
 public class ClientEntity {
@@ -25,7 +25,7 @@ public class ClientEntity {
     private String lastName;
 
     @ColumnInfo(name = "created_at")
-    private LocalDateTime createdAt;
+    private ZonedDateTime createdAt;
 
 
     public ClientEntity() {
@@ -39,7 +39,7 @@ public class ClientEntity {
     }
 
     @Ignore
-    public ClientEntity(String email, String firstName, String lastName, LocalDateTime createdAt) {
+    public ClientEntity(String email, String firstName, String lastName, ZonedDateTime createdAt) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +78,11 @@ public class ClientEntity {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
