@@ -24,7 +24,7 @@ import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.R;
 import ch.hevs.aislab.intro.adapter.ClientAdapter;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
-import ch.hevs.aislab.intro.databinding.ClientListFragmentBinding;
+import ch.hevs.aislab.intro.databinding.FragmentClientListBinding;
 import ch.hevs.aislab.intro.util.OnAsyncEventListener;
 import ch.hevs.aislab.intro.util.RecyclerViewItemClickListener;
 import ch.hevs.aislab.intro.viewmodels.ClientListViewModel;
@@ -33,7 +33,7 @@ public class ClientListFragment extends Fragment {
 
     private static final String TAG = "ClientListFragment";
 
-    private ClientListFragmentBinding binding;
+    private FragmentClientListBinding binding;
 
     private ClientAdapter clientAdapter;
     private ClientListViewModel viewModel;
@@ -42,7 +42,7 @@ public class ClientListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.client_list_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_client_list, container, false);
 
         clientAdapter = new ClientAdapter(new RecyclerViewItemClickListener() {
             @Override
@@ -97,7 +97,7 @@ public class ClientListFragment extends Fragment {
 
     private void createDeleteDialog(final ClientEntity client) {
         LayoutInflater inflater = LayoutInflater.from(binding.getRoot().getContext());
-        final View view = inflater.inflate(R.layout.row_delete_item, null);
+        final View view = inflater.inflate(R.layout.dialogue_delete_client, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(binding.getRoot().getContext()).create();
         alertDialog.setTitle(getString(R.string.title_activity_delete_account));
         alertDialog.setCancelable(false);

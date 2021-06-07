@@ -21,13 +21,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import ch.hevs.aislab.intro.BasicApp;
 import ch.hevs.aislab.intro.R;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
-import ch.hevs.aislab.intro.databinding.ClientDetailsFragmentBinding;
+import ch.hevs.aislab.intro.databinding.FragmentClientDetailsBinding;
 import ch.hevs.aislab.intro.util.OnAsyncEventListener;
 import ch.hevs.aislab.intro.viewmodels.ClientViewModel;
 
@@ -41,7 +40,7 @@ public class ClientDetailsFragment extends Fragment {
     private Toast statusToast;
     private String clientId;
 
-    private ClientDetailsFragmentBinding binding;
+    private FragmentClientDetailsBinding binding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,7 +87,7 @@ public class ClientDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(
-                inflater, R.layout.client_details_fragment, container, false
+                inflater, R.layout.fragment_client_details, container, false
         );
         return binding.getRoot();
     }

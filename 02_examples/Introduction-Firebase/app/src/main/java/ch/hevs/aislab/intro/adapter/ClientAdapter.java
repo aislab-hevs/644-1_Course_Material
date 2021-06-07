@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import ch.hevs.aislab.intro.R;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
-import ch.hevs.aislab.intro.databinding.ClientItemBinding;
+import ch.hevs.aislab.intro.databinding.ItemClientBinding;
 import ch.hevs.aislab.intro.util.RecyclerViewItemClickListener;
 
 public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder> {
@@ -70,8 +70,8 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     @Override
     @NonNull
     public ClientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ClientItemBinding binding = DataBindingUtil
-                .inflate(LayoutInflater.from(parent.getContext()), R.layout.client_item,
+        ItemClientBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.item_client,
                         parent, false);
         /*
         For some reasons, onLongClick is not recognized in the xml schema, therefore we implement
@@ -98,9 +98,9 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     static class ClientViewHolder extends RecyclerView.ViewHolder {
 
-        final ClientItemBinding binding;
+        final ItemClientBinding binding;
 
-        public ClientViewHolder(ClientItemBinding binding) {
+        public ClientViewHolder(ItemClientBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
