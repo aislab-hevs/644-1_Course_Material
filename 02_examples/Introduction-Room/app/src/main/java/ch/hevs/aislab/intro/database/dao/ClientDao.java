@@ -9,6 +9,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 import androidx.room.Update;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
@@ -18,6 +19,7 @@ public interface ClientDao {
     @Query("SELECT * FROM clients WHERE id = :id")
     LiveData<ClientEntity> getById(long id);
 
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT id, first_name, last_name FROM clients")
     LiveData<List<ClientEntity>> getAllPartial();
 

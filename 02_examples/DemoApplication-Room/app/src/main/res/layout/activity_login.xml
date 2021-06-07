@@ -1,96 +1,38 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ch.hevs.aislab.demo.ui.mgmt.LoginActivity">
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
-    <ScrollView
-        android:id="@+id/main_form"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginActivity">
 
-        <LinearLayout
-            android:id="@+id/email_login_form"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:titleTextColor="@color/design_default_color_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1" />
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:inputType="textPassword"
-                    android:maxLines="1"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/email_sign_in_button"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/register_button"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_register"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray" />
-
-            <Button
-                android:id="@+id/demo_data_button"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_demo_data"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

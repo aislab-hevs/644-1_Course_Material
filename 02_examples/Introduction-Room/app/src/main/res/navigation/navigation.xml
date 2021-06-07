@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@+id/client_list">
 
     <fragment
         android:id="@+id/client_list"
         android:name="ch.hevs.aislab.intro.ui.ClientListFragment"
-        android:label="@string/title_activity_main">
+        android:label="@string/title_activity_main"
+        tools:layout="@layout/fragment_client_list">
         <action
             android:id="@+id/action_client_list_to_client_details"
             app:destination="@id/client_details"
@@ -20,7 +22,8 @@
     <fragment
         android:id="@+id/client_details"
         android:name="ch.hevs.aislab.intro.ui.ClientDetailsFragment"
-        android:label="@string/title_activity_details">
+        android:label="@string/title_activity_details"
+        tools:layout="@layout/fragment_client_details">
         <argument
             android:name="client_id"
             android:defaultValue="0L"
