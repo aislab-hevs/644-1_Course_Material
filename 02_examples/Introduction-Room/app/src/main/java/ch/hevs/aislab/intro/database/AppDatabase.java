@@ -14,12 +14,12 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import ch.hevs.aislab.intro.database.converter.LocalDateTimeConverter;
+import ch.hevs.aislab.intro.database.converter.InstantConverter;
 import ch.hevs.aislab.intro.database.dao.ClientDao;
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
 @Database(entities = {ClientEntity.class}, version = 1)
-@TypeConverters(LocalDateTimeConverter.class)
+@TypeConverters(InstantConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";

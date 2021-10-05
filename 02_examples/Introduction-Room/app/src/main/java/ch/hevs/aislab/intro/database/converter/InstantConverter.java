@@ -4,7 +4,7 @@ import androidx.room.TypeConverter;
 
 import java.time.Instant;
 
-public class LocalDateTimeConverter {
+public class InstantConverter {
 
     @TypeConverter
     public static Instant toDate(String dateString) {
