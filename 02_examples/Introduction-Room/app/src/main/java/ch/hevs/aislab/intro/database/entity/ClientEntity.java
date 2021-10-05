@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 @Entity(tableName = "clients")
 public class ClientEntity {
@@ -25,7 +25,7 @@ public class ClientEntity {
     private String lastName;
 
     @ColumnInfo(name = "created_at")
-    private ZonedDateTime createdAt;
+    private Instant createdAt;
 
 
     public ClientEntity() {
@@ -39,7 +39,7 @@ public class ClientEntity {
     }
 
     @Ignore
-    public ClientEntity(String email, String firstName, String lastName, ZonedDateTime createdAt) {
+    public ClientEntity(String email, String firstName, String lastName, Instant createdAt) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +78,11 @@ public class ClientEntity {
         this.lastName = lastName;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
