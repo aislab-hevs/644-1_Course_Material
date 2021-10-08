@@ -1,9 +1,0 @@
-ch/hevs/apartments/BuildConfig.java
- ch.hevs.apartments.BuildConfig
-ch/hevs/apartments/MainActivity.java
- ch.hevs.apartments.MainActivity
- ch.hevs.apartments.MainActivity$1
-ch/hevs/apartments/ShowApartment.java
- ch.hevs.apartments.ShowApartment
-ch/hevs/apartments/About.java
- ch.hevs.apartments.About
