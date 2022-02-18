@@ -21,10 +21,10 @@ public class BaseApp extends Application {
     }
 
     public AccountRepository getAccountRepository() {
-        return AccountRepository.getInstance();
+        return AccountRepository.getInstance(getDatabase());
     }
 
     public ClientRepository getClientRepository() {
-        return ClientRepository.getInstance();
+        return ClientRepository.getInstance(getDatabase());
     }
 }

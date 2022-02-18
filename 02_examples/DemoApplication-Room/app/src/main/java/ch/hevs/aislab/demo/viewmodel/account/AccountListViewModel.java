@@ -44,8 +44,8 @@ public class AccountListViewModel extends AndroidViewModel {
         observableOwnAccounts.setValue(null);
 
         LiveData<List<ClientWithAccounts>> clientAccounts =
-                clientRepository.getOtherClientsWithAccounts(ownerId, application);
-        LiveData<List<AccountEntity>> ownAccounts = repository.getByOwner(ownerId, application);
+                clientRepository.getOtherClientsWithAccounts(ownerId);
+        LiveData<List<AccountEntity>> ownAccounts = repository.getByOwner(ownerId);
 
         // observe the changes of the entities from the database and forward them
         observableClientAccounts.addSource(clientAccounts, observableClientAccounts::setValue);
@@ -95,11 +95,11 @@ public class AccountListViewModel extends AndroidViewModel {
     }
 
     public void deleteAccount(AccountEntity account, OnAsyncEventListener callback) {
-        repository.delete(account, callback, application);
+        repository.delete(account, callback);
     }
 
     public void executeTransaction(final AccountEntity sender, final AccountEntity recipient,
                                    OnAsyncEventListener callback) {
-        repository.transaction(sender, recipient, callback, application);
+        repository.transaction(sender, recipient, callback);
     }
 }

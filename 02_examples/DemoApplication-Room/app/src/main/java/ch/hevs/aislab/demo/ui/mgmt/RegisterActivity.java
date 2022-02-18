@@ -3,18 +3,27 @@ package ch.hevs.aislab.demo.ui.mgmt;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.R;
+import ch.hevs.aislab.demo.database.AppDatabase;
 import ch.hevs.aislab.demo.database.async.client.CreateClient;
 import ch.hevs.aislab.demo.database.entity.ClientEntity;
+import ch.hevs.aislab.demo.database.repository.ClientRepository;
 import ch.hevs.aislab.demo.ui.BaseActivity;
 import ch.hevs.aislab.demo.ui.MainActivity;
 import ch.hevs.aislab.demo.util.OnAsyncEventListener;
+import ch.hevs.aislab.demo.viewmodel.account.AccountViewModel;
+import ch.hevs.aislab.demo.viewmodel.client.ClientViewModel;
+
+import static ch.hevs.aislab.demo.ui.BaseActivity.PREFS_USER;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -28,12 +37,16 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etPwd1;
     private EditText etPwd2;
 
+    private ClientRepository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initializeForm();
         toast = Toast.makeText(this, getString(R.string.client_created), Toast.LENGTH_LONG);
+
+        repository = ((BaseApp) getApplication()).getClientRepository();
     }
 
     private void initializeForm() {
@@ -67,25 +80,25 @@ public class RegisterActivity extends AppCompatActivity {
         }
         ClientEntity newClient = new ClientEntity(email, firstName, lastName, pwd);
 
-        new CreateClient(getApplication(), new OnAsyncEventListener() {
+        repository.insert(newClient,new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createUserWithEmail: success");
+                Log.d(TAG, "createClient: success");
                 setResponse(true);
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "createUserWithEmail: failure", e);
+                Log.d(TAG, "createClient: failure", e);
                 setResponse(false);
             }
-        }).execute(newClient);
+        });
     }
 
     private void setResponse(Boolean response) {
         if (response) {
             final SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
-            editor.putString(BaseActivity.PREFS_USER, etEmail.getText().toString());
+            editor.putString(PREFS_USER, etEmail.getText().toString());
             editor.apply();
             toast.show();
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

@@ -34,7 +34,7 @@ public class AccountViewModel  extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableAccount.setValue(null);
 
-        LiveData<AccountEntity> account = repository.getAccount(accountId, application);
+        LiveData<AccountEntity> account = repository.getAccount(accountId);
 
         // observe the changes of the account entity from the database and forward them
         observableAccount.addSource(account, observableAccount::setValue);
@@ -73,10 +73,10 @@ public class AccountViewModel  extends AndroidViewModel {
     }
 
     public void createAccount(AccountEntity account, OnAsyncEventListener callback) {
-        repository.insert(account, callback, application);
+        repository.insert(account, callback);
     }
 
     public void updateAccount(AccountEntity account, OnAsyncEventListener callback) {
-        repository.update(account, callback, application);
+        repository.update(account, callback);
     }
 }

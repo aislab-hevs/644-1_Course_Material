@@ -15,12 +15,13 @@ import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
 public class ClientViewModel extends AndroidViewModel {
 
+    private final LiveData<ClientEntity> observableClient;
     private ClientRepository repository;
 
     private Application application;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<ClientEntity> observableClient;
+    //private final MediatorLiveData<ClientEntity> observableClient;
 
     public ClientViewModel(@NonNull Application application,
                             final String clientId, ClientRepository clientRepository) {
@@ -29,15 +30,15 @@ public class ClientViewModel extends AndroidViewModel {
         this.application = application;
 
         repository = clientRepository;
-
-        observableClient = new MediatorLiveData<>();
+        observableClient = clientRepository.getClient(clientId);
+        //observableClient = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableClient.setValue(null);
+        //observableClient.setValue(null);
 
-        LiveData<ClientEntity> client = repository.getClient(clientId, application);
+        //LiveData<ClientEntity> client = repository.getClient(clientId, application);
 
         // observe the changes of the client entity from the database and forward them
-        observableClient.addSource(client, observableClient::setValue);
+        //observableClient.addSource(client, observableClient::setValue);
     }
 
     /**
@@ -73,15 +74,15 @@ public class ClientViewModel extends AndroidViewModel {
     }
 
     public void createClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.insert(client, callback, application);
+        repository.insert(client, callback);
     }
 
     public void updateClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.update(client, callback, application);
+        repository.update(client, callback);
     }
 
     public void deleteClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.delete(client, callback, application);
+        repository.delete(client, callback);
 
     }
 }
