@@ -2,21 +2,21 @@ package ch.hevs.aislab.intro.database.converter;
 
 import androidx.room.TypeConverter;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
-public class LocalDateTimeConverter {
+public class InstantConverter {
 
     @TypeConverter
-    public static ZonedDateTime toDate(String dateString) {
+    public static Instant toDate(String dateString) {
         if (dateString == null) {
             return null;
         } else {
-            return ZonedDateTime.parse(dateString);
+            return Instant.parse(dateString);
         }
     }
 
     @TypeConverter
-    public static String toDateString(ZonedDateTime date) {
+    public static String toDateString(Instant date) {
         if (date == null) {
             return null;
         } else {

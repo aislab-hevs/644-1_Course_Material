@@ -2,8 +2,7 @@ package ch.hevs.aislab.intro.database;
 
 import android.util.Log;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 import ch.hevs.aislab.intro.database.entity.ClientEntity;
 
@@ -20,10 +19,7 @@ public class DatabaseInitializer {
                                 final String lastName) {
         ClientEntity client = new ClientEntity(
                 email, firstName, lastName,
-                ZonedDateTime.of(
-                        2021, 1, 1, 0, 0, 0, 0,
-                        ZoneId.of("ECT")
-                )
+                Instant.parse("2021-01-01T10:00:00.00Z")
         );
         db.clientDao().insert(client);
     }

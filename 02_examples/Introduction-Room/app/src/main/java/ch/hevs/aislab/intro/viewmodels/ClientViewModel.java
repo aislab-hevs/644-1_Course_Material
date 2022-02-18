@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,11 +40,11 @@ public class ClientViewModel extends AndroidViewModel {
         return observableClient;
     }
 
-    public ZonedDateTime getInstant(String dateString) {
-        return ZonedDateTime.parse(dateString, dateFormatter);
+    public Instant getInstant(String dateString) {
+        return ZonedDateTime.parse(dateString, dateFormatter).toInstant();
     }
 
-    public String displayDateTime(ZonedDateTime dateTime) {
+    public String displayZonedDateTime(Instant dateTime) {
         if (dateTime != null) {
             return dateFormatter.format(dateTime);
         } else {
