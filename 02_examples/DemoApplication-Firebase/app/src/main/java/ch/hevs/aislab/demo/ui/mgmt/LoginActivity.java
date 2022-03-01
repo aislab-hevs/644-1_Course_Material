@@ -8,8 +8,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.R;
@@ -22,7 +23,7 @@ import ch.hevs.aislab.demo.ui.MainActivity;
 public class LoginActivity extends AppCompatActivity {
 
     private AutoCompleteTextView emailView;
-    private EditText passwordView;
+    private TextInputEditText passwordView;
     private ProgressBar progressBar;
 
     private ClientRepository repository;

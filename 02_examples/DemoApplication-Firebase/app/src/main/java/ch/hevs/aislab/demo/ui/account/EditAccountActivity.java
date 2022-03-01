@@ -3,11 +3,11 @@ package ch.hevs.aislab.demo.ui.account;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hevs.aislab.demo.R;
@@ -24,7 +24,7 @@ public class EditAccountActivity extends BaseActivity {
     private String owner;
     private boolean isEditMode;
     private Toast toast;
-    private EditText etAccountName;
+    private TextInputEditText etAccountName;
 
     private AccountViewModel viewModel;
 

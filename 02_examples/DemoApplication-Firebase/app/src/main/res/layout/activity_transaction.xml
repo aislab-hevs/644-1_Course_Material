@@ -68,7 +68,7 @@
         android:layout_marginBottom="6dp"
         android:background="@android:color/darker_gray"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/transaction_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

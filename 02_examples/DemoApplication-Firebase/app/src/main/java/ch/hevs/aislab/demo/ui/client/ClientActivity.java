@@ -10,10 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hevs.aislab.demo.R;
@@ -34,11 +34,11 @@ public class ClientActivity extends BaseActivity {
 
     private boolean isEditable;
 
-    private EditText etFirstName;
-    private EditText etLastName;
-    private EditText etEmail;
-    private EditText etPwd1;
-    private EditText etPwd2;
+    private TextInputEditText etFirstName;
+    private TextInputEditText etLastName;
+    private TextInputEditText etEmail;
+    private TextInputEditText etPwd1;
+    private TextInputEditText etPwd2;
 
     private ClientViewModel viewModel;
 

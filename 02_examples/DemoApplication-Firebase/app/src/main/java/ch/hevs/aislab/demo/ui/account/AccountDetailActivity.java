@@ -11,9 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.NumberFormat;
 
@@ -101,7 +102,7 @@ public class AccountDetailActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
 
-        final EditText accountMovement = view.findViewById(R.id.account_movement);
+        final TextInputEditText accountMovement = view.findViewById(R.id.account_movement);
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), new DialogInterface.OnClickListener() {
             @Override

@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import ch.hevs.aislab.demo.BaseApp;
 import ch.hevs.aislab.demo.R;
@@ -23,11 +24,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Toast toast;
 
-    private EditText etFirstName;
-    private EditText etLastName;
-    private EditText etEmail;
-    private EditText etPwd1;
-    private EditText etPwd2;
+    private TextInputEditText etFirstName;
+    private TextInputEditText etLastName;
+    private TextInputEditText etEmail;
+    private TextInputEditText etPwd1;
+    private TextInputEditText etPwd2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

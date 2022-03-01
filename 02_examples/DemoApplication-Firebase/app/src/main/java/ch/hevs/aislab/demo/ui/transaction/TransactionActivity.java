@@ -11,10 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -147,7 +147,7 @@ public class TransactionActivity extends BaseActivity {
     }
 
     private boolean executeTransaction() {
-        EditText amountEditText = findViewById(R.id.transaction_amount);
+        TextInputEditText amountEditText = findViewById(R.id.transaction_amount);
         String stringAmount = amountEditText.getText().toString();
         Double amount;
         if (!stringAmount.isEmpty()) {
