@@ -84,7 +84,7 @@ public class TransactionActivity extends BaseActivity {
         AccountListViewModel.Factory factory = new AccountListViewModel.Factory(
                 getApplication(),
                 FirebaseAuth.getInstance().getCurrentUser().getUid());
-        viewModel = new ViewModelProvider(this, factory).get(AccountListViewModel.class);
+        viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) factory).get(AccountListViewModel.class);
         viewModel.getOwnAccounts().observe(this, accountEntities -> {
             if (accountEntities != null) {
                 updateFromAccSpinner(accountEntities);
