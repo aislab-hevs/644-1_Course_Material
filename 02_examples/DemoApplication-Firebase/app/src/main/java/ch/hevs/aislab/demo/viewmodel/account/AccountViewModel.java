@@ -15,26 +15,26 @@ import ch.hevs.aislab.demo.util.OnAsyncEventListener;
 
 public class AccountViewModel  extends AndroidViewModel {
 
-    private AccountRepository mRepository;
+    private AccountRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<AccountEntity> mObservableAccount;
+    private final MediatorLiveData<AccountEntity> observableAccount;
 
     public AccountViewModel(@NonNull Application application,
                                    final String accountId, AccountRepository accountRepository) {
         super(application);
 
-        mRepository = accountRepository;
+        repository = accountRepository;
 
-        mObservableAccount = new MediatorLiveData<>();
+        observableAccount = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableAccount.setValue(null);
+        observableAccount.setValue(null);
 
         if (accountId != null) {
-            LiveData<AccountEntity> account = mRepository.getAccount(accountId);
+            LiveData<AccountEntity> account = repository.getAccount(accountId);
 
             // observe the changes of the account entity from the database and forward them
-            mObservableAccount.addSource(account, mObservableAccount::setValue);
+            observableAccount.addSource(account, observableAccount::setValue);
         }
     }
 
@@ -44,22 +44,22 @@ public class AccountViewModel  extends AndroidViewModel {
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
-        private final Application mApplication;
+        private final Application application;
 
-        private final String mAccountId;
+        private final String accountId;
 
-        private final AccountRepository mRepository;
+        private final AccountRepository repository;
 
         public Factory(@NonNull Application application, String accountId) {
-            mApplication = application;
-            mAccountId = accountId;
-            mRepository = ((BaseApp) application).getAccountRepository();
+            this.application = application;
+            this.accountId = accountId;
+            this.repository = ((BaseApp) application).getAccountRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new AccountViewModel(mApplication, mAccountId, mRepository);
+            return (T) new AccountViewModel(application, accountId, repository);
         }
     }
 
@@ -67,16 +67,17 @@ public class AccountViewModel  extends AndroidViewModel {
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
     public LiveData<AccountEntity> getAccount() {
-        return mObservableAccount;
+        return observableAccount;
     }
 
     public void createAccount(AccountEntity account, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getAccountRepository()
-                .insert(account, callback);
+        repository.insert(account, callback);
     }
 
     public void updateAccount(AccountEntity account, OnAsyncEventListener callback) {
-        ((BaseApp) getApplication()).getAccountRepository()
-                .update(account, callback);
+        repository.update(account, callback);
     }
+
+
+
 }

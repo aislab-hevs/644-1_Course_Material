@@ -16,23 +16,23 @@ import ch.hevs.aislab.demo.util.RecyclerViewItemClickListener;
 
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<T> data;
-    private RecyclerViewItemClickListener listener;
+    private List<T> mData;
+    private RecyclerViewItemClickListener mListener;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView textView;
+        TextView mTextView;
         ViewHolder(TextView textView) {
             super(textView);
-            this.textView = textView;
+            mTextView = textView;
         }
     }
 
     public RecyclerAdapter(RecyclerViewItemClickListener listener) {
-        this.listener = listener;
+        mListener = listener;
     }
 
     @Override
@@ -41,9 +41,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_view, parent, false);
         final ViewHolder viewHolder = new ViewHolder(v);
-        v.setOnClickListener(view -> listener.onItemClick(view, viewHolder.getAdapterPosition()));
+        v.setOnClickListener(view -> mListener.onItemClick(view, viewHolder.getAdapterPosition()));
         v.setOnLongClickListener(view -> {
-            listener.onItemLongClick(view, viewHolder.getAdapterPosition());
+            mListener.onItemLongClick(view, viewHolder.getAdapterPosition());
             return true;
         });
         return viewHolder;
@@ -51,31 +51,31 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        T item = data.get(position);
+        T item = mData.get(position);
         if (item.getClass().equals(AccountEntity.class))
-            holder.textView.setText(((AccountEntity) item).getName());
+            holder.mTextView.setText(((AccountEntity) item).getName());
         if (item.getClass().equals(ClientEntity.class))
-            holder.textView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
+            holder.mTextView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
     }
 
     @Override
     public int getItemCount() {
-        if (data != null) {
-            return data.size();
+        if (mData != null) {
+            return mData.size();
         } else {
             return 0;
         }
     }
 
     public void setData(final List<T> data) {
-        if (this.data == null) {
-            this.data = data;
+        if (mData == null) {
+            mData = data;
             notifyItemRangeInserted(0, data.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return RecyclerAdapter.this.data.size();
+                    return mData.size();
                 }
 
                 @Override
@@ -85,11 +85,11 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (RecyclerAdapter.this.data instanceof AccountEntity) {
-                        return ((AccountEntity) RecyclerAdapter.this.data.get(oldItemPosition)).getId().equals(((AccountEntity) data.get(newItemPosition)).getId());
+                    if (mData instanceof AccountEntity) {
+                        return ((AccountEntity) mData.get(oldItemPosition)).getId().equals(((AccountEntity) data.get(newItemPosition)).getId());
                     }
-                    if (RecyclerAdapter.this.data instanceof ClientEntity) {
-                        return ((ClientEntity) RecyclerAdapter.this.data.get(oldItemPosition)).getEmail().equals(
+                    if (mData instanceof ClientEntity) {
+                        return ((ClientEntity) mData.get(oldItemPosition)).getEmail().equals(
                                 ((ClientEntity) data.get(newItemPosition)).getEmail());
                     }
                     return false;
@@ -97,17 +97,17 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (RecyclerAdapter.this.data instanceof AccountEntity) {
+                    if (mData instanceof AccountEntity) {
                         AccountEntity newAccount = (AccountEntity) data.get(newItemPosition);
-                        AccountEntity oldAccount = (AccountEntity) RecyclerAdapter.this.data.get(newItemPosition);
+                        AccountEntity oldAccount = (AccountEntity) mData.get(newItemPosition);
                         return newAccount.getId().equals(oldAccount.getId())
                                 && Objects.equals(newAccount.getName(), oldAccount.getName())
                                 && Objects.equals(newAccount.getBalance(), oldAccount.getBalance())
                                 && newAccount.getOwner().equals(oldAccount.getOwner());
                     }
-                    if (RecyclerAdapter.this.data instanceof ClientEntity) {
+                    if (mData instanceof ClientEntity) {
                         ClientEntity newClient = (ClientEntity) data.get(newItemPosition);
-                        ClientEntity oldClient = (ClientEntity) RecyclerAdapter.this.data.get(newItemPosition);
+                        ClientEntity oldClient = (ClientEntity) mData.get(newItemPosition);
                         return Objects.equals(newClient.getEmail(), oldClient.getEmail())
                                 && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
                                 && Objects.equals(newClient.getLastName(), oldClient.getLastName())
@@ -116,7 +116,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     return false;
                 }
             });
-            this.data = data;
+            mData = data;
             result.dispatchUpdatesTo(this);
         }
     }
