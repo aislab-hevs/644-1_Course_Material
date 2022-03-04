@@ -173,7 +173,7 @@ public class TransactionActivity extends BaseActivity {
             }
             fromAccount.setBalance(fromAccount.getBalance() - amount);
             toAccount.setBalance(toAccount.getBalance() + amount);
-            viewModel.executeTransaction(fromAccount, toAccount, new OnAsyncEventListener() {
+            viewModel.executeTransaction(amount, fromAccount, toAccount, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
                     Log.d(TAG, "transaction: success");
