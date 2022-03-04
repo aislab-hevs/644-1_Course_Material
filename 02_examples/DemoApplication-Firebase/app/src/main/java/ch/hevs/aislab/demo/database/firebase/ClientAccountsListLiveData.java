@@ -38,13 +38,18 @@ public class ClientAccountsListLiveData extends LiveData<List<ClientWithAccounts
 
     @Override
     protected void onInactive() {
-        Log.d(TAG, "onInactive");
+        if (!hasActiveObservers()) {
+            Log.d(TAG, "onInactive: Remove Event Listener");
+            reference.removeEventListener(listener);
+        }
     }
 
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toClientWithAccountsList(dataSnapshot));
+            if(dataSnapshot.exists()){
+                setValue(toClientWithAccountsList(dataSnapshot));
+            }
         }
 
         @Override

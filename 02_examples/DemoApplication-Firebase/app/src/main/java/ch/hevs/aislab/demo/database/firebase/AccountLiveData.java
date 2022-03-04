@@ -32,16 +32,22 @@ public class AccountLiveData extends LiveData<AccountEntity> {
 
     @Override
     protected void onInactive() {
-        Log.d(TAG, "onInactive");
+        if (!hasActiveObservers()) {
+            Log.d(TAG, "onInactive: Remove Event Listener");
+            reference.removeEventListener(listener);
+        }
     }
 
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            AccountEntity entity = dataSnapshot.getValue(AccountEntity.class);
-            entity.setId(dataSnapshot.getKey());
-            entity.setOwner(owner);
-            setValue(entity);
+            if(dataSnapshot.exists()){
+                AccountEntity entity = dataSnapshot.getValue(AccountEntity.class);
+                entity.setId(dataSnapshot.getKey());
+                entity.setOwner(owner);
+                setValue(entity);
+            }
+
         }
 
         @Override
