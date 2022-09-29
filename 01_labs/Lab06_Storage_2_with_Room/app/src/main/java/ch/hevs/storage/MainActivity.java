@@ -74,19 +74,6 @@ public class MainActivity extends Activity {
 
             case R.id.main_btn_fruits_save:  // 3.	Save it in a database
                 String[] fruitStrings = getResources().getStringArray(R.array.fruits_array);
-                /*
-                DbHelper dbHelper = new DbHelper(this);
-			    SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-			    ContentValues values = new ContentValues();
-
-			    for (int i = 0; i < fruitStrings.length; i++) {
-				    values.put(FruitEntry.KEY_FRUIT, fruitStrings[i]);
-				    db.insert(FruitEntry.TABLE_FRUITS, FruitEntry.KEY_FRUIT, values);
-			    }
-
-                db.close();
-			    */
 
                 db = AppDatabase.getAppDatabase(this);
 

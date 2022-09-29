@@ -87,27 +87,6 @@ public class ShowData extends Activity {
 	}
 	
 	private void readSQL(){
-		/*DbHelper dbHelper = new DbHelper(this);
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		
-		String [] projection = {
-                FruitsContract.FruitEntry.KEY_ID,
-                FruitsContract.FruitEntry.KEY_FRUIT
-        };
-		
-		Cursor c = db.query(false, FruitsContract.FruitEntry.TABLE_FRUITS, projection, null, null, null, null, null, null);
-		ArrayList<String> array = new ArrayList<>();
-		
-		c.moveToFirst();
-		
-		while(!c.isAfterLast()){
-			array.add(c.getString(1));
-			c.moveToNext();
-		}
-
-        db.close();
-		*/
-
 		AppDatabase db = AppDatabase.getAppDatabase(this);
 
 		List<Fruit> fruits = db.fruitDao().getAll();
